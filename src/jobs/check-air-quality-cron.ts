@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 import AirQuality from '../models/airQuality';
-import { fetchAirQuality } from '../services/airQualityService';
+import { fetchAirQuality } from '../services/api/airQualityApiService';
 import { mapAirQualityToDb }  from '../utils/airQualityDbMapper';
 
 

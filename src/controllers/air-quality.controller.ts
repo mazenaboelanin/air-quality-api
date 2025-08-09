@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { fetchAirQuality } from "../services/airQualityService";
+import { fetchAirQuality } from "../services/api/airQualityApiService";
 import { mapAirQualityToApi } from "../utils/airQualityApiMapper";
 
 
