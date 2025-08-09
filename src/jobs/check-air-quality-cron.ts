@@ -1,8 +1,7 @@
 import cron from 'node-cron';
-import axios from 'axios';
-
 import AirQuality from '../models/airQuality';
 import { fetchAirQuality } from '../services/airQualityService';
+import { mapAirQualityToDb }  from '../utils/airQualityDbMapper';
 
 
 export function checkAirQualityCron() {
@@ -14,23 +13,9 @@ export function checkAirQualityCron() {
     try {
 
       const response = await fetchAirQuality(Number(lat), Number(lon));
+      console.log('==== CRON before mapper', response)
       
-      const result = {
-        city: response.data.city,
-        state: response.data.state,
-        country: response.data.country,
-        coordinates: {
-          latitude: lat,
-          longitude: lon
-        },
-        pollution: {
-          ts: response.data.current.pollution.ts,
-          aqius: response.data.current.pollution.aqius,
-          mainus: response.data.current.pollution.mainus,
-          aqicn: response.data.current.pollution.aqicn,
-          maincn: response.data.current.pollution.maincn,
-        }
-      }
+      const result = mapAirQualityToDb(response);
 
       console.log('==== CRON response', response)
       console.log('==== CRON result', result)

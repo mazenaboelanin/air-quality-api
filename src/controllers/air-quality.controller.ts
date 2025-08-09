@@ -1,10 +1,10 @@
-// @desc       list air quality for lat and long
-// @route      GET api/v1/air_quality
-
 import { RequestHandler } from "express";
 import { fetchAirQuality } from "../services/airQualityService";
+import { mapAirQualityToApi } from "../utils/airQualityApiMapper";
 
 
+// @desc       list air quality for lat and long
+// @route      GET api/v1/air_quality
 // @access     Public
 export const getAirQuality: RequestHandler = async(
   req, 
@@ -15,21 +15,10 @@ export const getAirQuality: RequestHandler = async(
 
   try {
     const response = await fetchAirQuality(Number(lat), Number(lon));
-    const result = prepareResult(response);
+    const result = mapAirQualityToApi(response);
   
     res.json({ success: true, message: 'air quality successful', result });
   } catch (error) {
     res.json({success: false, message: 'air quality Failed', error });
   }
-}
-
-
-function prepareResult(response: any){
-  const result = {
-      pollution: {
-        ...response.data.current.pollution
-      }
-  }
-
-  return result;
 }
