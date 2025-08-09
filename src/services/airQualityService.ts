@@ -10,7 +10,7 @@ export async function fetchAirQuality(lat: number, lon: number) {
     console.error("== response from service:", response.data);
 
 
-    return response.data;
+    return response.data.data;
   } catch (error: any) {
     console.error("== Failed to fetch air quality:", error.message);
     throw new Error("Could not fetch air quality data");
