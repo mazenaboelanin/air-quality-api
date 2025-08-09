@@ -11,9 +11,11 @@ export const getAirQuality: RequestHandler = async(
   res: { json: (arg0: { success: boolean; message: string; result?: any; err?: any; }) => void; },
   next) => {
 
+  const { lat, lon } = req.query;
+
   try {
     const  response = await axios.get(
-      `http://api.airvisual.com/v2/nearest_city?lat=35.98&lon=140.33&key=${process.env.IQAIR_API_KEY}`
+      `http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${lon}&key=${process.env.IQAIR_API_KEY}`
       );
 
     const result = prepareResult(response);
