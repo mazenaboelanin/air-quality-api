@@ -1,6 +1,7 @@
 import app from './app';
 import dotenv from 'dotenv';
 import connectDB from '../config/db';
+import { checkAirQualityCron } from './jobs/check-air-quality-cron';
 
 // Load environment variables from .env file
 dotenv.config({ path: './config/config.env' });
@@ -13,3 +14,6 @@ connectDB();
 app.listen(PORT, () => {
     console.log(`Server started on http://localhost:${PORT}`);
 });
+
+
+checkAirQualityCron();
