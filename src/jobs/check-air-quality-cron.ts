@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import AirQuality from '../models/airQuality';
 import { fetchAirQuality } from '../services/api/airQualityApiService';
 import { mapAirQualityToDb }  from '../utils/airQualityDbMapper';
+import { createAirQualityRecord } from '../services/db/airQualityDbService'
 
 
 export function checkAirQualityCron() {
@@ -19,14 +20,8 @@ export function checkAirQualityCron() {
 
       console.log('==== CRON response', response)
       console.log('==== CRON result', result)
-
-      const newAirQuality = await AirQuality.create(result);
-      if (newAirQuality && newAirQuality._id) {
-        console.log(`==== Air quality record created successfully for ${newAirQuality.city}, ${newAirQuality.country}`);
-      } else {
-        console.log("==== Record was not created.");
-      }
-
+      
+      await createAirQualityRecord(result);
 
     } catch (error) {
       console.log('==== CRON error', error)
