@@ -1,7 +1,8 @@
 import { RequestHandler } from "express";
-import { fetchAirQuality } from "../services/api/airQualityApiService";
-import { mapAirQualityToApi } from "../utils/airQualityApiMapper";
-import { selectMostPollutedDate } from "../services/db/airQualityDbService";
+import { fetchAirQuality } from "../services/api/air-quality-api.service";
+import { mapAirQualityToApi } from "../utils/air-quality-api-mapper.util";
+import { selectMostPollutedDate } from "../services/db/air-quality-db.service";
+import { StatusCodes } from 'http-status-codes';
 
 
 
@@ -10,18 +11,20 @@ import { selectMostPollutedDate } from "../services/db/airQualityDbService";
 // @access     Public
 export const getAirQuality: RequestHandler = async(
   req, 
-  res: { json: (arg0: { success: boolean; message: string; result?: any; error?: any; }) => void; },
+  res: {
+    status: any; json: (arg0: { success: boolean; message: string; result?: any; error?: any; }) => void; 
+},
   next) => {
 
-  const { lat, lon } = req.query;
+  const { lat, lon } = req.query; // TODO : Handle if no lat or lon in request
 
   try {
     const response = await fetchAirQuality(Number(lat), Number(lon));
     const result = mapAirQualityToApi(response);
   
-    res.json({ success: true, message: 'air quality successful', result });
+    res.status(StatusCodes.OK).json({ success: true, message: 'air quality successful', result });
   } catch (error) {
-    res.json({success: false, message: 'air quality Failed', error });
+    res.status(StatusCodes.BAD_REQUEST).json({success: false, message: 'air quality Failed', error });
   }
 }
 
@@ -31,18 +34,20 @@ export const getAirQuality: RequestHandler = async(
 // @access     Public
 export const getMostPollutedDate: RequestHandler = async(
   req, 
-  res: { json: (arg0: { success: boolean; message: string; result?: any; error?: any; }) => void; },
+  res: {
+    status: any; json: (arg0: { success: boolean; message: string; result?: any; error?: any; }) => void; 
+},
   next) => {
 
-  const { city } = req.params;
+  const { city } = req.params; // TODO: HANDLE IF NO CITY IN PARAMS
   const formattedCity = city.charAt(0).toUpperCase() + city.slice(1) // Capitalize the first letter
 
   try {
     const mostPollutedDate = await selectMostPollutedDate(formattedCity);
     console.log('========== ',mostPollutedDate);
   
-    res.json({ success: true, message: 'found most polluted date successfully', result: mostPollutedDate });
+    res.status(StatusCodes.OK).json({ success: true, message: 'found most polluted date successfully', result: mostPollutedDate });
   } catch (error) {
-    res.json({success: false, message: 'didn\'t find most polluted date successfully', error: error.message });
+    res.status(StatusCodes.BAD_REQUEST).json({success: false, message: 'didn\'t find most polluted date successfully', error: error.message });
   }
 }
