@@ -18,6 +18,11 @@ export const getAirQuality: RequestHandler = async(
 
   const { lat, lon } = req.query; // TODO : Handle if no lat or lon in request
 
+  if (!lat || !lon) {
+    return res.status(StatusCodes.BAD_REQUEST)
+       .json({success: false, message: 'air quality Failed', error: 'you should enter lat and lon' });
+  }
+
   try {
     const response = await fetchAirQuality(Number(lat), Number(lon));
     const result = mapAirQualityToApi(response);
@@ -30,7 +35,7 @@ export const getAirQuality: RequestHandler = async(
 
 
 // @desc       get datetime where the paris zone is the most polluted
-// @route      GET api/v1/air_quality/paris/most_pulluted_date
+// @route      GET api/v1/air_quality/:paris/most_pulluted_date
 // @access     Public
 export const getMostPollutedDate: RequestHandler = async(
   req, 
