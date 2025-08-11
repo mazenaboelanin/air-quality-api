@@ -19,5 +19,6 @@ export async function checkAirQualityJob() {
 
     } catch (error) {
       console.log('==== CANT FETCH API', error)
+      throw new Error(error.message);
     }
 }
