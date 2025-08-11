@@ -1,4 +1,4 @@
-import AirQuality from "../../models/airQuality";
+import AirQuality from "../../models/air-quality.model";
 
 export async function createAirQualityRecord(data: any) {
   const newAirQuality = await AirQuality.create(data);

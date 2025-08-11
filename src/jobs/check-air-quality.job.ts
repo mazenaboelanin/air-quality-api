@@ -1,11 +1,9 @@
 import cron from 'node-cron';
-import AirQuality from '../models/airQuality';
-import { fetchAirQuality } from '../services/api/airQualityApiService';
-import { mapAirQualityToDb }  from '../utils/airQualityDbMapper';
-import { createAirQualityRecord } from '../services/db/airQualityDbService'
+import { fetchAirQuality } from '../services/api/air-quality-api.service';
+import { mapAirQualityToDb }  from '../utils/air-quality-db-mapper.util';
+import { createAirQualityRecord } from '../services/db/air-quality-db.service'
 
-
-export function checkAirQualityCron() {
+export function checkAirQualityJob() {
   // Runs every minute
   cron.schedule('* * * * *', async() => {
     console.log('==== Cron job is running every minute!', new Date().toISOString());
@@ -30,5 +28,4 @@ export function checkAirQualityCron() {
       console.log('==== ENDED Cron job!', new Date().toISOString());
     }
   });
-
 }
