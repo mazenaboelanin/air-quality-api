@@ -7,7 +7,7 @@ import { fetchAirQuality }from "../../../../src/services/api/air-quality-api.ser
 import { airQualityApiResponseFactory } from "../../../factories/air-quality/air-quality-api-response.factory";
 
 // Mocks
-jest.mock('../../../src/services/api/air-quality-api.service');
+jest.mock('../../../../src/services/api/air-quality-api.service');
 
 describe("GET /api/v1/air_quality (mocked external API)", () => {
   beforeEach(() => {

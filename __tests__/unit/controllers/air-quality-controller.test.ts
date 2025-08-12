@@ -73,7 +73,7 @@ describe('getAirQuality Handler', () => {
     expect(res.json).toHaveBeenCalledWith({
       success: false,
       message: 'air quality Failed',
-      error: fakeError,
+      error: fakeError.message,
     });
   });
 
@@ -133,7 +133,7 @@ describe('getMostPollutedDate Handler', () => {
     });
   });
 
-  it('should return status code 400 with error', async () => {
+  it('should return status code 404 with error', async () => {
     const { city } = req.params ;
     const formattedCity = city.charAt(0).toUpperCase() + city.slice(1);
 
@@ -146,7 +146,7 @@ describe('getMostPollutedDate Handler', () => {
     // Assert
     expect(formattedCity).toBe('Paris');
     expect(selectMostPollutedDate).toHaveBeenCalledWith(formattedCity);
-    expect(res.status).toHaveBeenCalledWith(StatusCodes.BAD_REQUEST);
+    expect(res.status).toHaveBeenCalledWith(StatusCodes.NOT_FOUND);
     expect(res.json).toHaveBeenCalledWith({
       success: false,
       message: 'didn\'t find most polluted date successfully',

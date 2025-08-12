@@ -53,6 +53,6 @@ export const getMostPollutedDate: RequestHandler = async(
   
     res.status(StatusCodes.OK).json({ success: true, message: 'found most polluted date successfully', result: mostPollutedDate });
   } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).json({success: false, message: 'didn\'t find most polluted date successfully', error: error.message });
+    res.status(StatusCodes.NOT_FOUND).json({success: false, message: 'didn\'t find most polluted date successfully', error: error.message });
   }
 }
