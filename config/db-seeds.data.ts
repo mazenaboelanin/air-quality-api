@@ -73,7 +73,7 @@ export const airQualitySeeds = [
     },
     pollution: {
       ts: '2025-08-10T12:10:00Z',
-      aqius: 85,
+      aqius: 82,
       mainus: 'p2',
       aqicn: 42,
       maincn: 'p1',
