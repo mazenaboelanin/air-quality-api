@@ -1,10 +1,8 @@
+import '../config/env';  
 import app from './app';
-import dotenv from 'dotenv';
-import connectDB from '../config/db';
+import { connectDB } from '../config/db';
 import { runScheduler } from './jobs/scheduler';
 
-// Load environment variables from .env file
-dotenv.config({ path: './config/config.env' });
 
 const PORT = 5000;
 

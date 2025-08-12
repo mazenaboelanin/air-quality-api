@@ -1,3 +1,4 @@
+import '../config/env';
 import express from 'express';
 
 // importing Routes
