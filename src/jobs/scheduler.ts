@@ -5,7 +5,7 @@ const jobs = [
   {
     name: 'Check Air Quality Job',
     job: checkAirQualityJob,
-    schedule: '*/15 * * * * *'
+    schedule: '* * * * *'
   }
 ];
 
