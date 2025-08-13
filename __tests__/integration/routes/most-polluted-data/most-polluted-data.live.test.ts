@@ -22,7 +22,6 @@ describe("GET /api/v1/air_quality/:city/most_polluted_date(LIVE DB)", () => {
   it("returns the most polluted date for a known city", async () => {
     const res = await request(app).get("/api/v1/air_quality/paris/most_polluted_date");
 
-    console.log('res', res.body);
     expect(res.status).toBe(StatusCodes.OK);
     expect(res.body.success).toBe(true);
     expect(res.body.message).toBe('found most polluted date successfully');
@@ -32,7 +31,6 @@ describe("GET /api/v1/air_quality/:city/most_polluted_date(LIVE DB)", () => {
   it("should return 404 if no record found (live)", async () => {
     const res = await request(app).get("/api/v1/air_quality/notExistCity/most_polluted_date");
   
-    console.log(`⚠️ Live API returned:`, res.body);
     expect(res.status).toBe(StatusCodes.NOT_FOUND);
     expect(res.body.success).toBe(false);
     expect(res.body.error).toBe("didn\'t find most polluted date successfully");

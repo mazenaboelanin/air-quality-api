@@ -20,7 +20,6 @@ describe('GET /api/v1/air_quality?lat=2&lon=4', () => {
     const res = await request(app)
       .get("/api/v1/air_quality?lat=48.859425&lon=2.351666"); // Paris
 
-      // console.log("⚠️ Live API returned:", res.body);
       expect(res.status).toBe(StatusCodes.OK);
       expect(res.body.success).toBe(true);
       expect(res.body.result).toHaveProperty("pollution");
@@ -36,7 +35,6 @@ describe('GET /api/v1/air_quality?lat=2&lon=4', () => {
     for (const url of urls) {
       const res = await request(app).get(url);
 
-      // console.log(`⚠️ Live API returned: for url => ${url}`, res.body);
       expect(res.status).toBe(StatusCodes.BAD_REQUEST);
       expect(res.body.success).toBe(false);
       expect(res.body.message).toBe("air quality Failed");
@@ -50,7 +48,6 @@ describe('GET /api/v1/air_quality?lat=2&lon=4', () => {
     const res = await request(app)
       .get("/api/v1/air_quality?lat=48.8566&lon=2.3522"); // Paris
   
-    // console.log(`⚠️ Live API returned:`, res.body);
     expect(res.status).toBe(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(res.body.success).toBe(false);
     expect(res.body.error).toBe("Could not fetch air quality data");

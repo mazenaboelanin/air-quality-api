@@ -49,7 +49,6 @@ export const getMostPollutedDate: RequestHandler = async(
 
   try {
     const mostPollutedDate = await selectMostPollutedDate(formattedCity);
-    console.log('========== ',mostPollutedDate);
   
     res.status(StatusCodes.OK).json({ success: true, message: 'found most polluted date successfully', result: mostPollutedDate });
   } catch (error) {

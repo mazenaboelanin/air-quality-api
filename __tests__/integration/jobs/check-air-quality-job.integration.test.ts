@@ -36,10 +36,8 @@ describe('checkAirQualityJob - Integration', () => {
     await checkAirQualityJob();
     const after = await AirQuality.countDocuments({});
     
-    console.log({ before, after, diff: after - before });
     // Assert DB state
     const record = await AirQuality.findOne().sort({ _id: -1 }).exec();
-    console.log('== record', record);
     expect(record).not.toBeNull();
     expect(record!._id).toBeDefined();
     expect(record!.city).toBe('Paris');

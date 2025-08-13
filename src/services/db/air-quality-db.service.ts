@@ -7,7 +7,6 @@ export async function createAirQualityRecord(data: any) {
     throw new Error("Record was not created.");
   }
 
-  console.log(`==== Air quality record created successfully for ${newAirQuality.city}, ${newAirQuality.country}`);
   return newAirQuality;
 }
 
