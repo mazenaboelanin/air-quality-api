@@ -7,6 +7,7 @@ Includes scheduled jobs for periodic data fetching and supports in-memory and re
 
 ## Table of Contents
 
+- [API Documentation](#api-documentation)
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
@@ -25,6 +26,13 @@ Includes scheduled jobs for periodic data fetching and supports in-memory and re
 - [Project Structure](#project-structure)
 
 ---
+
+## API Documentation
+
+The full API documentation with request details and examples is available at:
+
+[View API Documentation](https://documenter.getpostman.com/view/7117783/2sB3BGG95h)
+
 
 ## Features
 
