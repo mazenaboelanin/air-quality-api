@@ -136,7 +136,7 @@ npm run test:live-integratio
 
 
 ### Project Structure
-
+```bash
 src/
 ├── controllers/ # API route controllers
 ├── jobs/ # Cron jobs and background jobs
@@ -157,3 +157,4 @@ tests/
 ├── unit/ # Unit tests
 ├── integration/ # Integration tests
 ├── factories/ # Test data factories
+```
