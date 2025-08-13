@@ -59,7 +59,7 @@ describe('getAirQuality Handler', () => {
     });
   });
 
-  it('should return status code 400 with error', async () => {
+  it('should return status code 500 with error', async () => {
     // Arrange
     const fakeError = new Error('air quality Failed');
     (fetchAirQuality as jest.Mock).mockRejectedValue(fakeError);
@@ -69,7 +69,7 @@ describe('getAirQuality Handler', () => {
 
     // Assert
     expect(fetchAirQuality).toHaveBeenCalledWith(48.8566, 2.3522);
-    expect(res.status).toHaveBeenCalledWith(StatusCodes.BAD_REQUEST);
+    expect(res.status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
     expect(res.json).toHaveBeenCalledWith({
       success: false,
       message: 'air quality Failed',

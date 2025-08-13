@@ -16,7 +16,7 @@ export const getAirQuality: RequestHandler = async(
 },
   next) => {
 
-  const { lat, lon } = req.query; // TODO : Handle if no lat or lon in request
+  const { lat, lon } = req.query;
 
   if (!lat || !lon) {
     return res.status(StatusCodes.BAD_REQUEST)
@@ -29,7 +29,7 @@ export const getAirQuality: RequestHandler = async(
   
     res.status(StatusCodes.OK).json({ success: true, message: 'air quality successful', result });
   } catch (error) {
-    res.status(StatusCodes.BAD_REQUEST).json({success: false, message: 'air quality Failed', error });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({success: false, message: 'air quality Failed', error: error.message });
   }
 }
 
@@ -44,7 +44,7 @@ export const getMostPollutedDate: RequestHandler = async(
 },
   next) => {
 
-  const { city } = req.params; // TODO: HANDLE IF NO CITY IN PARAMS
+  const { city } = req.params;
   const formattedCity = city.charAt(0).toUpperCase() + city.slice(1) // Capitalize the first letter
 
   try {
