@@ -7,6 +7,9 @@
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
+    "test:unit": "jest ./__tests__/unit --runInBand --testPathIgnorePatterns=live",
+    "test:integration": "jest ./__tests__/integration --runInBand --testPathIgnorePatterns=live",
+    "test:live-integration": "jest ./__tests__/integration --runInBand --testPathPatterns=live",
     "test": "jest --runInBand --testPathIgnorePatterns=live"
   },
   "keywords": [],
