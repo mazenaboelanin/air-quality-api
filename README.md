@@ -19,10 +19,13 @@ Includes scheduled jobs for periodic data fetching and supports in-memory and re
 - [Database Setup](#database-setup)  
 - [API Endpoints](#api-endpoints)  
 - [Cron Job](#cron-job)  
-- [Testing](#testing)  
-  - [Unit Tests](#unit-tests)  
-  - [Integration Tests](#integration-tests)  
-  - [Live Integration Tests](#live-integration-tests)  
+- [Testing](#testing)
+  - [Running Tests Locally](#running-tests-locally)
+    - [Unit Tests](#unit-tests)  
+    - [Integration Tests](#integration-tests)  
+    - [Live Integration Tests](#live-integration-tests)  
+  - [Running Tests Inside Docker](#running-tests-inside-docker)
+
 - [Project Structure](#project-structure)
 
 ---
@@ -105,7 +108,7 @@ This project includes a `Dockerfile` and `docker-compose.yml` for easy container
 - [Docker Compose](https://docs.docker.com/compose/install/) installed
 - MongoDB Atlas connection string and `config.env` file ready
 
-### Running with Docker Compose
+### Running Tests inside Docker
 
 Build and start the containers:
 ```bash
@@ -122,7 +125,6 @@ restart the container
 ```bash
 docker-compose up
 ```
-
 
 The app reads environment variables from the file specified in env_file (e.g., config/config.env).
 
@@ -155,6 +157,8 @@ It runs automatically based on the scheduler (configured in `jobs/check-air-qual
 
 ## Testing
 
+### Running Tests Locally
+
 ### Unit Tests
 
 Run unit tests (mocking external APIs and DB) with:
@@ -175,9 +179,46 @@ npm run test:integration
 Run live integration tests against the real API and real MongoDB with:
 
 ```bash
-npm run test:live-integratio
+npm run test:live-integration
 ```
 
+### All Tests
+
+Run all tests (unit and integration) without live tests:
+
+```bash
+npm run test
+```
+
+## 🧪 Running Tests Inside Docker
+
+If your container is already running (via `docker-compose up`), you can run tests inside it without defining a separate `test` service.
+
+### Steps
+
+1. **Check running containers**
+```bash
+   docker ps
+```
+
+2. **Exec into the container**
+```bash
+docker exec -it air-quality-api-app-1 sh
+```
+3. **Run The Tests**
+
+```bash
+npm run test:unit
+npm run test:integration
+npm run test:live-integration
+```
+
+4. **Exit the container** 
+
+```bash
+exit
+```
+---
 
 ### Project Structure
 ```bash
@@ -197,7 +238,7 @@ config/
 ├── env.ts # load environment variables
 
 
-tests/
+__tests__/
 ├── unit/ # Unit tests
 ├── integration/ # Integration tests
 ├── factories/ # Test data factories

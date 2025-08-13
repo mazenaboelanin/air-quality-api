@@ -17,7 +17,6 @@ export function runScheduler() {
         await job();
       } catch (error) {
         console.log('==== CRON error', error)
-        throw new (error.message);
       } finally {
         console.log('==== ENDED Cron job!', new Date().toISOString());
       }
