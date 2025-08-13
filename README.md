@@ -192,7 +192,7 @@ npm run test
 
 ## 🧪 Running Tests Inside Docker
 
-If your container is already running (via `docker-compose up`), you can run tests inside it without defining a separate `test` service.
+If your container is already running (via `docker-compose up`), you can run tests inside it.
 
 ### Steps
 
