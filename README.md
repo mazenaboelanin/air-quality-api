@@ -13,7 +13,8 @@ Includes scheduled jobs for periodic data fetching and supports in-memory and re
   - [Prerequisites](#prerequisites)  
   - [Installation](#installation)  
   - [Environment Variables](#environment-variables)  
-  - [Run Locally](#run-locally)  
+  - [Run Locally](#run-locally)
+- [Docker Setup](#docker-setup)
 - [Database Setup](#database-setup)  
 - [API Endpoints](#api-endpoints)  
 - [Cron Job](#cron-job)  
@@ -21,7 +22,7 @@ Includes scheduled jobs for periodic data fetching and supports in-memory and re
   - [Unit Tests](#unit-tests)  
   - [Integration Tests](#integration-tests)  
   - [Live Integration Tests](#live-integration-tests)  
-- [Project Structure](#project-structure)  
+- [Project Structure](#project-structure)
 
 ---
 
@@ -85,6 +86,41 @@ npm run dev
 ```
 
 The API will be available at http://localhost:5000
+
+## Docker Setup
+
+This project includes a `Dockerfile` and `docker-compose.yml` for easy containerized setup.
+
+### Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) installed
+- [Docker Compose](https://docs.docker.com/compose/install/) installed
+- MongoDB Atlas connection string and `config.env` file ready
+
+### Running with Docker Compose
+
+Build and start the containers:
+```bash
+docker-compose up --build
+```
+The app will be accessible at:http://localhost:5000
+
+stop the container
+```bash
+docker-compose down
+```
+
+restart the container 
+```bash
+docker-compose up
+```
+
+
+The app reads environment variables from the file specified in env_file (e.g., config/config.env).
+
+Ensure your .env file contains valid MongoDB URI and API keys.
+
+If your app listens on a different port, adjust both the app's PORT environment variable and the port mapping in docker-compose.yml.
 
 ### Database Setup
 
