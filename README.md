@@ -189,7 +189,7 @@ Run all tests (unit and integration) without live tests:
 npm run test
 ```
 
-### 🧪 Running Tests Inside Docker
+### Running Tests Inside Docker
 
 If your container is already running (via `docker-compose up`), you can run tests inside it.
 
