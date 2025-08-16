@@ -108,7 +108,6 @@ This project includes a `Dockerfile` and `docker-compose.yml` for easy container
 - [Docker Compose](https://docs.docker.com/compose/install/) installed
 - MongoDB Atlas connection string and `config.env` file ready
 
-### Running Tests inside Docker
 
 Build and start the containers:
 ```bash
@@ -190,7 +189,7 @@ Run all tests (unit and integration) without live tests:
 npm run test
 ```
 
-## 🧪 Running Tests Inside Docker
+### 🧪 Running Tests Inside Docker
 
 If your container is already running (via `docker-compose up`), you can run tests inside it.
 
